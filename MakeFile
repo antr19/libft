@@ -1,0 +1,16 @@
+NAME = libft.a
+SRCS = main.c isalpha.c isdigit.c isalnum.c isascii.c isprint.c strlen.c memset.c bzero.c memcpy.c memmove.c
+OBJS = $(SRCS:.c=.o)
+FLAGS = -Wall -Werror -Wextra
+CC = gcc
+
+run: all
+	a.exe
+
+all:	$(NAME)
+
+$(NAME):	$(OBJS)
+	$(CC) $(FLAGS) $(OBJS) -I "libft.h"
+
+.c.o:
+	$(CC) $(FLAGS) -c $< -o $@
