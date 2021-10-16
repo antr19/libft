@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmarsha <fmarsha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/16 00:36:46 by fmarsha           #+#    #+#             */
-/*   Updated: 2021/10/16 00:48:09 by fmarsha          ###   ########.fr       */
+/*   Created: 2021/10/16 01:12:07 by fmarsha           #+#    #+#             */
+/*   Updated: 2021/10/16 01:23:54 by fmarsha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	s_len;
-	size_t	ss_len;
-	char	*ss;
+	unsigned int	start;
+	size_t			len;
 
-	s_len = ft_strlen(s);
-	if (start > s_len)
-	{
-		ss = (char *)malloc(1);
-		if (ss)
-			*ss = 0;
-		return (ss);
-	}
-	else if ((s_len - start) > len)
-		ss_len = len + 1;
-	else
-		ss_len = s_len - start + 1;
-	ss = (char *)malloc(ss_len);
-	if (ss)
-		ft_strlcpy(ss, s + start, ss_len);
-	return (ss);
+	start = 0;
+	while (ft_strchr(set, s1[start]))
+		start++;
+	len = ft_strlen(s1);
+	while (ft_strchr(set, s1[len]))
+		len--;
+	return (ft_substr(s1, start, len - start + 1));
 }
