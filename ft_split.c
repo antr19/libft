@@ -6,7 +6,7 @@
 /*   By: fmarsha <fmarsha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:52:57 by fmarsha           #+#    #+#             */
-/*   Updated: 2021/10/16 03:14:28 by fmarsha          ###   ########.fr       */
+/*   Updated: 2021/10/18 16:37:45 by fmarsha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,30 @@
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
-int	count_words(char const *s, char c)
+int	count_words(char const *s, char c, char flag)
 {
-	int	num;
+	int			num;
+	char const	*st;
 
+	st = s;
 	num = 0;
-	while (*s++)
+	while (*s++ && *(s + 1))
 	{
 		if (*s == c && *(s + 1) != c)
 			num++;
 	}
+	if (flag)
+		free((void *)st);
 	return (++num);
 }
 
 void	finish_him(char **ss, char *t, int s, size_t l)
 {
-	*ss++ = ft_substr(t, s, l);
+	if (*t)
+		*ss++ = ft_substr(t, s, l);
 	*ss = 0;
 }
 
-// #include <stdio.h>
 char	**ft_split(char const *s, char c)
 {
 	char			*t_s;
@@ -44,7 +48,7 @@ char	**ft_split(char const *s, char c)
 	size_t			len;
 
 	t_s = ft_strtrim(s, &c);
-	ss = (char **)malloc(sizeof(char *) * (count_words(t_s, c) + 1));
+	ss = (char **)malloc(sizeof(char *) * (count_words(t_s, c, 0) + 1));
 	i = -1;
 	start = -1;
 	len = 0;
@@ -61,16 +65,5 @@ char	**ft_split(char const *s, char c)
 			len++;
 	}
 	finish_him(ss, t_s, start + 1, len);
-	return (ss - count_words(t_s, c) + 1);
+	return (ss - count_words(t_s, c, 1) + 1);
 }
-
-// int main()
-// {
-// 	char **s;
-// 	s = ft_split("aaaaaaaaabdaaaaaabbbbbbbbbbbaadddddlkiopddddaaaaaaaabbaaaaaaaa", 'a');
-// 	while (*s)
-// 	{
-// 		printf("%s\n", *s);
-// 		s++;
-// 	}
-// }
