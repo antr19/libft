@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmarsha <fmarsha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 18:41:20 by fmarsha           #+#    #+#             */
-/*   Updated: 2021/10/19 02:15:31 by fmarsha          ###   ########.fr       */
+/*   Created: 2021/10/19 01:30:03 by fmarsha           #+#    #+#             */
+/*   Updated: 2021/10/19 03:44:14 by fmarsha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putchar_fd(char c, int fd);
+#include "libft.h"
 
-static void	loop(int n, int fd)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	if (n / 10 == 0)
-		ft_putchar_fd('0' - n, fd);
-	else
-	{
-		loop(n / 10, fd);
-		ft_putchar_fd('0' - n % 10, fd);
-	}
-}
+	t_list	*new;
+	t_list	*tmp;
+	t_list	*new_element;
 
-void	ft_putnbr_fd(int n, int fd)
-{
-	if (n >= 0)
-		loop(-n, fd);
-	else
+	if (lst)
 	{
-		ft_putchar_fd('-', fd);
-		loop(n, fd);
+		new = ft_lstnew(f(lst->content));
+		lst = lst->next;
 	}
+	while (lst)
+	{
+		new_element = ft_lstnew(f(lst->content));
+		if (!new_element)
+			ft_lstdelone(tmp, del);
+		ft_lstadd_back(&new, new_element);
+		tmp = lst;
+		lst = lst->next;
+	}
+	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: fmarsha <fmarsha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 16:47:24 by fmarsha           #+#    #+#             */
-/*   Updated: 2021/10/18 17:54:52 by fmarsha          ###   ########.fr       */
+/*   Updated: 2021/10/19 02:15:15 by fmarsha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_len_int(int n)
 	return (len);
 }
 
-char	*loop(int n, char *s)
+static char	*loop(int n, char *s)
 {
 	if (n / 10 == 0)
 		*s = '0' - n;

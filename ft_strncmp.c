@@ -6,7 +6,7 @@
 /*   By: fmarsha <fmarsha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 21:17:29 by fmarsha           #+#    #+#             */
-/*   Updated: 2021/10/15 21:18:01 by fmarsha          ###   ########.fr       */
+/*   Updated: 2021/10/18 19:33:05 by fmarsha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	while (*s1 == *s2 && n--)
+	while (*s1 == *s2 && s1 && s2 && *s1 && *s2 && n--)
 	{
 		s1++;
 		s2++;

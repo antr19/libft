@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmarsha <fmarsha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 18:41:20 by fmarsha           #+#    #+#             */
-/*   Updated: 2021/10/19 02:15:31 by fmarsha          ###   ########.fr       */
+/*   Created: 2021/10/19 01:00:44 by fmarsha           #+#    #+#             */
+/*   Updated: 2021/10/19 01:17:51 by fmarsha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putchar_fd(char c, int fd);
+#include "libft.h"
+#include <stdlib.h>
 
-static void	loop(int n, int fd)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	if (n / 10 == 0)
-		ft_putchar_fd('0' - n, fd);
-	else
-	{
-		loop(n / 10, fd);
-		ft_putchar_fd('0' - n % 10, fd);
-	}
-}
+	t_list	*t;
 
-void	ft_putnbr_fd(int n, int fd)
-{
-	if (n >= 0)
-		loop(-n, fd);
-	else
+	while (*lst)
 	{
-		ft_putchar_fd('-', fd);
-		loop(n, fd);
+		t = *lst;
+		*lst = (*lst)->next;
+		del(t->content);
+		free(t);
 	}
 }
