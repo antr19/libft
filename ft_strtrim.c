@@ -6,7 +6,7 @@
 /*   By: fmarsha <fmarsha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 01:12:07 by fmarsha           #+#    #+#             */
-/*   Updated: 2021/10/16 01:23:54 by fmarsha          ###   ########.fr       */
+/*   Updated: 2021/10/27 23:50:09 by fmarsha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t			len;
 
 	start = 0;
-	while (ft_strchr(set, s1[start]))
+	if (!s1 || !set)
+		return (0);
+	while (s1[start] && ft_strchr(set, s1[start]))
 		start++;
 	len = ft_strlen(s1);
-	while (ft_strchr(set, s1[len]))
+	while (len > start && ft_strchr(set, s1[len]))
 		len--;
 	return (ft_substr(s1, start, len - start + 1));
 }

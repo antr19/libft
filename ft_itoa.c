@@ -6,7 +6,7 @@
 /*   By: fmarsha <fmarsha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 16:47:24 by fmarsha           #+#    #+#             */
-/*   Updated: 2021/10/19 02:15:15 by fmarsha          ###   ########.fr       */
+/*   Updated: 2021/10/27 22:57:17 by fmarsha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ char	*ft_itoa(int n)
 	char	*s;
 
 	s = (char *)malloc(ft_len_int(n) + 1);
+	if (!s)
+		return (0);
 	if (n >= 0)
 		*loop(-n, s) = 0;
 	else

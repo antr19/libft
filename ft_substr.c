@@ -6,7 +6,7 @@
 /*   By: fmarsha <fmarsha@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 00:36:46 by fmarsha           #+#    #+#             */
-/*   Updated: 2021/10/16 00:48:09 by fmarsha          ###   ########.fr       */
+/*   Updated: 2021/10/27 20:58:17 by fmarsha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	ss_len;
 	char	*ss;
 
+	if (!s)
+		return (0);
 	s_len = ft_strlen(s);
 	if (start > s_len)
 	{
